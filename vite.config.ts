@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -10,7 +9,29 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      "@": fileURLToPath(new URL("./src", import.meta.url))
+    }
+  },
+
+  server: {
+    hmr: {
+      overlay: false
+    },
+    proxy: {
+      "/api": {
+        target: "",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "")
+      }
+    },
+    host: "0.0.0.0",  // ✨✨使项目可通过IP访问
+  },
+  build: {
+    target: "es2020"
+  },
+  optimizedeps: {
+    esbuildoptions: {
+      target: "es2020"
     }
   }
-})
+});
