@@ -38,7 +38,7 @@ const routes = [
   {
     path: "/main",
     name: "main",
-    component: () => import("@/views/main/main.vue"),
+    component: () => import("@/views/main.vue"),
     children: [
       {
         path: "/main/dashboard",

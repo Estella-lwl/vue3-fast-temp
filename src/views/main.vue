@@ -1,12 +1,12 @@
 <template>
   <div class="main">
     <el-container class="main-content">
-      <el-aside class="el-aside">
-        <!-- <Menu /> -->
+      <el-aside class="el-aside" :width="isCollapse ? '80px' : '200px'">
+        <Menu :collapse="isCollapse" />
       </el-aside>
       <el-container class="page">
         <el-header>
-          <!-- <Header /> -->
+          <Header @menuChange="handleMenuChange" />
         </el-header>
         <el-main class="page-content">
           <div class="page-info">
@@ -21,28 +21,13 @@
 <script setup>
 import { defineComponent, ref, computed } from "vue";
 import { useRouter } from "vue-router";
-// import router from "@/router";
-// import Menu from "@/components/Menu";
-// import Header from "@/components/Header";
+import Menu from "@/components/Menu";
+import Header from "@/components/Header";
 
-const router = useRouter();
-
-// 生成动态菜单
-const menuRoutes = computed(() => {
-  return (
-    router
-      .getRoutes()
-      .find((r) => r.name === "main")
-      ?.children?.filter((r) => !r.meta?.hidden)
-      ?.map((r) => ({
-        path: r.path,
-        title: r.meta?.title || r.name,
-        icon: r.meta?.icon
-      })) || []
-  );
-});
-
-console.log("menuRoutes: ", menuRoutes);
+const isCollapse = ref(false);
+const handleMenuChange = (isFold) => {
+  isCollapse.value = isFold;
+};
 </script>
 
 <style scoped lang="less">
