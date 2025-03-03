@@ -75,6 +75,8 @@ const handleMenuSwitch = (item) => {
   });
 };
 
+// const menuItem = ref([{ name: "Dashboard", path: "/dashboard" }]);
+
 // 当前路由信息
 const menuRoutes = computed(() => {
   return (

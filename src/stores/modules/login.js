@@ -44,7 +44,7 @@ export const useUserStore = defineStore("user", {
 
     // 登录
     async accountLoginAction(payload) {
-      console.log("3333333", import.meta.env.VITE_APP_MOCK_AUTH);
+      console.log("current env:", import.meta.env.VITE_APP_MOCK_AUTH);
       if (import.meta.env.VITE_APP_MOCK_AUTH) {
         LocalCache.setCache("mock_token");
         router.push("/main/dashboard");

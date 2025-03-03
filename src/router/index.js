@@ -2,15 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import { useRoute, createWebHashHistory } from "vue-router";
 import { routerGuard } from "./router-guard";
 
-// // 加载主框架路由
-// const mainRoute = (await import("./modules/main.js")).default;
-// // 自动加载业务子路由（匹配 modules/main-*.js 的约定）
-// const childModules = import.meta.glob("./modules/main-*.js", { eager: true });
-// mainRoute.children = Object.values(childModules)
-//   .map((m) => m.default)
-//   .flat();
-// console.log("mainRoute: ", mainRoute);
-
 // 加载所有路由模块
 const moduleFiles = import.meta.glob("./modules/*.js", { eager: true });
 const modules = Object.values(moduleFiles)
